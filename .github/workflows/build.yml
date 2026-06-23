@@ -1,41 +1,322 @@
-name: GitUp
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAGNO TRADER | Fresh Product, Best Price</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+    <!-- Header / Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div>
+                <a href="#" class="text-2xl font-black tracking-wider text-green-600">MAGNO TRADER</a>
+                <p class="text-xs text-gray-500 tracking-widest uppercase">Fresh Product, Best Price</p>
+            </div>
+            <nav class="hidden md:flex space-x-8 font-medium">
+                <a href="#" class="hover:text-green-600 transition">Home</a>
+                <a href="#products" class="hover:text-green-600 transition">Products</a>
+                <a href="#contact" class="hover:text-green-600 transition">Contact</a>
+            </nav>
+            <div class="relative">
+                <button onclick="toggleCartModal()" class="bg-green-600 text-white px-4 py-2 rounded-full flex items-center space-x-2 hover:bg-green-700 transition shadow">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="font-bold">Cart</span>
+                    <span id="cart-count" class="bg-white text-green-600 text-xs px-2 py-0.5 rounded-full font-black">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+    <!-- Hero Section -->
+    <section class="relative h-[85vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://i.ibb.co/ZRpTq7v5/just-look-there-there-is-exactly-what-we-were-looking.jpg" alt="MAGNO TRADER Hero Image" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50"></div> <!-- Dark Overlay for better text readability -->
+        </div>
+        
+        <div class="relative z-10 text-center text-white px-4 max-w-3xl">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 drop-shadow-md">MAGNO TRADER</h1>
+            <p class="text-xl md:text-2xl font-light tracking-wide mb-8 uppercase text-green-300">Fresh Product, Best Price</p>
+            <a href="#products" class="bg-green-500 hover:bg-green-600 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition inline-block">
+                <i class="fas fa-shopping-bag mr-2"></i> Shop Our Products
+            </a>
+        </div>
+    </section>
 
-jobs:
-  build:
-    name: Build GitUp Application
-    runs-on: macos-latest
+    <!-- Features Section -->
+    <section class="py-12 bg-white border-b">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="p-4">
+                <div class="text-green-500 text-4xl mb-3"><i class="fas fa-leaf"></i></div>
+                <h3 class="text-xl font-bold mb-2">100% Fresh</h3>
+                <p class="text-gray-600">Sourced directly from premium vendors to ensure elite quality.</p>
+            </div>
+            <div class="p-4">
+                <div class="text-green-500 text-4xl mb-3"><i class="fas fa-tags"></i></div>
+                <h3 class="text-xl font-bold mb-2">Best Price Guarantee</h3>
+                <p class="text-gray-600">Unmatched competitive pricing that fits your budget perfectly.</p>
+            </div>
+            <div class="p-4">
+                <div class="text-green-500 text-4xl mb-3"><i class="fas fa-truck"></i></div>
+                <h3 class="text-xl font-bold mb-2">Swift Ordering</h3>
+                <p class="text-gray-600">Easy placement system sent directly to our dispatch desk.</p>
+            </div>
+        </div>
+    </section>
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          submodules: true
+    <!-- Products Section -->
+    <section id="products" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Our Fresh Products</h2>
+                <div class="h-1 w-20 bg-green-500 mx-auto mt-3"></div>
+            </div>
 
-      - name: Select Xcode version
-        run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col justify-between">
+                    <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=500&q=80" alt="Fresh Farm Vegetables" class="h-48 w-full object-cover">
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-900 mb-1">Premium Farm Vegetables Basket</h3>
+                            <p class="text-sm text-gray-500 mb-4">Freshly picked assortment of rich organic greens.</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-xl font-black text-gray-900">$15.00</span>
+                            <button onclick="addToCart('Premium Farm Vegetables Basket', 15.00)" class="bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded hover:bg-green-700 transition">
+                                <i class="fas fa-plus mr-1"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-      - name: Show Xcode version
-        run: xcodebuild -version
+                <!-- Product 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col justify-between">
+                    <img src="https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?auto=format&fit=crop&w=500&q=80" alt="Fresh Red Apples" class="h-48 w-full object-cover">
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-900 mb-1">Organic Crimson Apples</h3>
+                            <p class="text-sm text-gray-500 mb-4">Sweet, crunchy, and packed with vital nutrition.</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-xl font-black text-gray-900">$8.50</span>
+                            <button onclick="addToCart('Organic Crimson Apples', 8.50)" class="bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded hover:bg-green-700 transition">
+                                <i class="fas fa-plus mr-1"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-      - name: Build GitUp
-        working-directory: GitUp
-        run: |
-          xcodebuild build \
-            -scheme "Application" \
-            -configuration "Release" \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO
+                <!-- Product 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col justify-between">
+                    <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&w=500&q=80" alt="Fresh Strawberries" class="h-48 w-full object-cover">
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-900 mb-1">Sweet Garden Strawberries</h3>
+                            <p class="text-sm text-gray-500 mb-4">Juicy handpicked berries, flawless for desserts.</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-xl font-black text-gray-900">$12.00</span>
+                            <button onclick="addToCart('Sweet Garden Strawberries', 12.00)" class="bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded hover:bg-green-700 transition">
+                                <i class="fas fa-plus mr-1"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Product 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col justify-between">
+                    <img src="https://images.unsplash.com/photo-1596003906949-67221c377fe5?auto=format&fit=crop&w=500&q=80" alt="Raw Almonds" class="h-48 w-full object-cover">
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-900 mb-1">Natural Whole Almonds</h3>
+                            <p class="text-sm text-gray-500 mb-4">Premium grade crunchy almonds raw-packaged.</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-xl font-black text-gray-900">$18.99</span>
+                            <button onclick="addToCart('Natural Whole Almonds', 18.99)" class="bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded hover:bg-green-700 transition">
+                                <i class="fas fa-plus mr-1"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Shopping Cart & Order Checkout Form Section -->
+    <section id="checkout-section" class="py-16 bg-white border-t">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">Complete Your Order</h2>
+                <p class="text-gray-500 mt-2">Review your selected items and provide delivery details below.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Cart Details Summary Column -->
+                <div class="lg:col-span-5 bg-gray-50 p-6 rounded-xl border">
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-gray-800">
+                        <i class="fas fa-shopping-basket text-green-600 mr-2"></i> Selected Items
+                    </h3>
+                    
+                    <div id="cart-items-list" class="space-y-4 max-h-80 overflow-y-auto pr-2 mb-4">
+                        <!-- Dynamic Cart Content injected here -->
+                        <p class="text-gray-500 italic text-center py-8">Your shopping cart is currently empty. Add products above to build your order list.</p>
+                    </div>
+
+                    <div class="border-t pt-4 space-y-2">
+                        <div class="flex justify-between text-gray-600">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Delivery Fee</span>
+                            <span id="cart-delivery" class="text-green-600 font-medium">FREE</span>
+                        </div>
+                        <div class="flex justify-between text-xl font-black text-gray-900 border-t pt-2">
+                            <span>Total Amount</span>
+                            <span id="cart-total">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Information Checkout Form Column -->
+                <div class="lg:col-span-7 bg-white p-6 rounded-xl border shadow-sm">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                        <i class="fas fa-user-check text-green-600 mr-2"></i> Delivery & Contact Details
+                    </h3>
+                    
+                    <!-- Uses Formspree to route directly to owner's email -->
+                    <form action="https://formspree.io/f/yjat367@gmail.com" method="POST" id="checkout-form" class="space-y-4">
+                        <!-- Hidden inputs generated dynamically via JavaScript to parse final structured order contents safely to email -->
+                        <input type="hidden" name="_subject" value="New Order Placed - MAGNO TRADER">
+                        <input type="hidden" name="Ordered Items Summary" id="hidden-order-summary">
+                        <input type="hidden" name="Total Payable Value" id="hidden-total-value">
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1" for="name">Your Name *</label>
+                                <input type="text" id="name" name="Customer Name" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-green-500 transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1" for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="Customer Phone" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-green-500 transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1" for="email">Email Address *</label>
+                            <input type="email" id="email" name="Customer Email" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-green-500 transition">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1" for="address">Full Delivery Address *</label>
+                            <textarea id="address" name="Delivery Address" rows="3" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-green-500 transition" placeholder="Street Name, Apartment/House No, City, Zip Code"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1" for="notes">Special Order Notes (Optional)</label>
+                            <textarea id="notes" name="Additional Notes" rows="2" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-green-500 transition" placeholder="E.g., leave at the front porch..."></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-btn" disabled class="w-full bg-gray-400 text-white font-bold py-3 px-6 rounded-lg shadow cursor-not-allowed transition text-center block text-lg">
+                            Please Add Items to Cart to Order
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sliding Sidebar Mini-Cart Modal Overlay -->
+    <div id="cart-sidebar" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/50 transition-opacity" onclick="toggleCartModal()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-xl flex flex-col justify-between">
+                <div class="p-6 overflow-y-auto flex-1">
+                    <div class="flex items-start justify-between pb-4 border-b">
+                        <h2 class="text-xl font-bold text-gray-900"><i class="fas fa-shopping-cart text-green-600 mr-2"></i> Your Current Cart</h2>
+                        <button onclick="toggleCartModal()" class="text-gray-400 hover:text-gray-500 text-2xl">&times;</button>
+                    </div>
+                    <div id="sidebar-cart-list" class="divide-y divide-gray-200 mt-4">
+                        <!-- Dynamic items -->
+                    </div>
+                </div>
+                <div class="border-t p-6 bg-gray-50 space-y-4">
+                    <div class="flex justify-between text-lg font-bold text-gray-900">
+                        <span>Total Balance:</span>
+                        <span id="sidebar-total">$0.00</span>
+                    </div>
+                    <a href="#checkout-section" onclick="toggleCartModal()" class="w-full bg-green-600 hover:bg-green-700 text-white text-center font-bold py-3 px-4 rounded-lg block shadow transition">
+                        Proceed to Order Details Form
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact & Footer Details -->
+    <footer id="contact" class="bg-gray-900 text-gray-300 pt-12 pb-6 border-t border-gray-800">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <h3 class="text-white font-black tracking-wider text-xl mb-3">MAGNO TRADER</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Providing elite standard wholesale fresh stock products at the absolute finest price marks on the market layout framework.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3">Quick Navigation Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-green-400 transition">Return to Home Top</a></li>
+                    <li><a href="#products" class="hover:text-green-400 transition">Browse Fresh Inventory</a></li>
+                    <li><a href="#checkout-section" class="hover:text-green-400 transition">View Shopping Cart Summary</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3">Contact Information Desk</h4>
+                <p class="text-sm text-gray-400 flex items-center mb-2">
+                    <i class="fas fa-envelope text-green-500 mr-2"></i> yjat367@gmail.com
+                </p>
+                <p class="text-sm text-gray-400 flex items-center">
+                    <i class="fas fa-clock text-green-500 mr-2"></i> Mon - Sat: 8:00 AM - 6:00 PM
+                </p>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
+            &copy; 2026 MAGNO TRADER. All rights reserved. Built for secure operational fast order generation processing systems.
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Core logic logic -->
+    <script>
+        // Centralized Application Cart State Container 
+        let cart = [];
+
+        function addToCart(name, price) {
+            // Find if item exists already inside array state 
+            const existingItemIndex = cart.findIndex(item => item.name === name);
+            if (existingItemIndex > -1) {
+                cart[existingItemIndex].quantity += 1;
+            } else {
+                cart.push({ name: name, price: price, quantity: 1 });
+            }
+            updateCartDOM();
+        }
+
+        function updateQuantity(name, delta) {
+            const itemIndex = cart.findIndex(item => item.name === name);
+            if (itemIndex > -1) {
+                cart[itemIndex].quantity += delta;
+                if (cart[itemIndex].quantity <= 0) {
+                    cart.splice(itemIndex, 1);
+                }
+            }
+            updateCartDOM();
+        }
+
+        function updateCartDOM()
